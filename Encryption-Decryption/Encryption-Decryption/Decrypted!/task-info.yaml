@@ -1,0 +1,108 @@
+type: edu
+custom_name: stage3
+files:
+- name: test/EncryptDecryptTest.java
+  visible: false
+  text: |
+    import encryptdecrypt.Main;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.SimpleTestCase;
+
+    import java.util.List;
+
+    public class EncryptDecryptTest extends StageTest {
+        public EncryptDecryptTest() throws Exception {
+            super(Main.class);
+        }
+
+        @Override
+        public List<SimpleTestCase> generate() {
+            return List.of(
+                new SimpleTestCase(
+                    "enc\n" +
+                        "Welcome to hyperskill!\n" +
+                        "5",
+                    "\\jqhtrj%yt%m~ujwxpnqq&"),
+                new SimpleTestCase(
+                    "enc\n" +
+                        "Hello\n" +
+                        "0",
+                    "Hello"),
+                new SimpleTestCase(
+                    "enc\n" +
+                        "012345678\n" +
+                        "1",
+                    "123456789"),
+                new SimpleTestCase(
+                    "dec\n" +
+                        "\\jqhtrj%yt%m~ujwxpnqq&\n" +
+                        "5",
+                    "Welcome to hyperskill!"),
+                new SimpleTestCase(
+                    "dec\n" +
+                        "Hello\n" +
+                        "0",
+                    "Hello"),
+                new SimpleTestCase(
+                    "dec\n" +
+                        "222233334444\n" +
+                        "1",
+                    "111122223333")
+            );
+        }
+    }
+  learner_created: false
+- name: src/encryptdecrypt/Main.java
+  visible: true
+  text: |-
+    package encryptdecrypt;
+
+    import java.util.Scanner;
+
+    public class Main {
+        private static String alp = "abcdefghijklmnopqrstuvwxyz";
+        private static char[] alpArr = alp.toCharArray();
+
+        public static void main(String[] args) {
+
+            Scanner s = new Scanner(System.in);
+            Scanner s1 = new Scanner(System.in);
+
+
+            String sent = "we found a treasure!";
+            String newSent = "";
+
+            newSent = s.nextLine();
+            int key = s.nextInt();
+            System.out.println(encrypt(newSent, key));
+        }
+
+        public static String encrypt(String original, int key){
+            String newSent = "";
+
+            for (char a : original.toCharArray()) {
+                boolean found = false;
+                for (int i = 0; i < alpArr.length - 1; i++) {
+
+                    if (alpArr[i] == a) {
+                        int ni = i + key;
+                        if(ni > alpArr.length-1){
+                             ni = ni -  (alpArr.length-1) -1;
+                        }
+                        newSent += alpArr[ni];
+                        found = true;
+                    }
+
+                }
+                if(!found){
+                    newSent += a;
+                }
+            }
+
+            return newSent;
+        }
+    }
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/46/stages/247/implement
+status: Solved
+record: 3
