@@ -1,0 +1,11 @@
+During the programming of this stage, you may want to slightly tweak the sizes of the components. You can do it in two ways: the first is to create an invisible border around it (this link will help), and the second is to force the component to be a certain size (this link).
+
+Due to testing reasons, you need to set name to some components.
+
+Set the names to these components:
+
+JTextArea component to "TextArea"
+Field which contains filename to "FilenameField"
+Button that saves the file to "SaveButton"
+Button that loads a file to "LoadButton"
+ScrollPane to "ScrollPane"

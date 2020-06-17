@@ -1,0 +1,16 @@
+ File file = new File(fileNameField.getText());
+                String s = "";
+                byte[] fileBytes = {};
+                fileBytes = new byte[(int) file.length()];
+                try {
+                    FileInputStream fis = new FileInputStream(file);
+                    fis.read(fileBytes);
+                    System.out.println(new String(fileBytes));
+                    textArea.setText(new String(fileBytes));
+                    fis.close();
+                }catch (FileNotFoundException e){
+                    System.out.println("File not found");
+                    textArea.setText("");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
